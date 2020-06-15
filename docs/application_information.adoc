@@ -1,0 +1,3 @@
+# Versões das dependências
+
+* Postgresql: v9.6
