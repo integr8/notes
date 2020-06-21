@@ -1,2 +1,1 @@
-export * from './ping.controller';
-export * from './tag.controller';
+export * from './user.controller';

@@ -1,1 +1,1 @@
-export * from './tags.repository';
+export * from './user.repository';

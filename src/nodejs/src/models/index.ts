@@ -1,1 +1,1 @@
-export * from './tags.model';
+export * from './user.model';
