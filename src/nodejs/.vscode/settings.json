@@ -28,8 +28,5 @@
   "eslint.validate": [
     "javascript",
     "typescript"
-  ],
-  "conventionalCommits.scopes": [
-    "nodejs"
   ]
 }

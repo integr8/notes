@@ -1,0 +1,10 @@
+{
+    "conventionalCommits.scopes": [
+        "nodejs",
+        "java",
+        "php",
+        "docs",
+        "dotnet",
+        "vue"
+    ]
+}
