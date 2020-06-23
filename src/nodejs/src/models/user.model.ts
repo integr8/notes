@@ -1,11 +1,12 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, hasMany, model, property} from '@loopback/repository';
+import {Note, NoteWithRelations} from './note.model';
 
 @model({
   settings: {
     idInjection: false,
     postgresql: {
       schema: 'public',
-      table: 'users'
+      table: 'users',
     },
   },
 })
@@ -85,13 +86,16 @@ export class User extends Entity {
   })
   createdAt: string;
 
+  @hasMany(() => Note, {keyTo: 'idUser', name: 'notes'})
+  notes?: Note[];
+
   constructor(data?: Partial<User>) {
     super(data);
   }
 }
 
 export interface UserRelations {
-  // describe navigational properties here
+  notes?: NoteWithRelations;
 }
 
 export type UserWithRelations = User & UserRelations;
