@@ -5,6 +5,7 @@
         "php",
         "docs",
         "dotnet",
-        "vue"
+        "vue",
+        "gtk"
     ]
 }
