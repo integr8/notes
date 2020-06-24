@@ -77,11 +77,9 @@ export class User extends Entity {
 
   @property({
     type: 'date',
-    required: false,
     postgresql: {
       columnName: 'created_at',
       dataType: 'timestamp with time zone',
-      nullable: 'NO',
     },
   })
   createdAt: string;

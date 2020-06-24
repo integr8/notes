@@ -22,7 +22,7 @@ import {NoteRepository} from '../repositories';
 export class NoteController {
   constructor(
     @repository(NoteRepository)
-    public noteRepository : NoteRepository,
+    public noteRepository: NoteRepository,
   ) {}
 
   @post('/notes', {
@@ -39,7 +39,7 @@ export class NoteController {
         'application/json': {
           schema: getModelSchemaRef(Note, {
             title: 'NewNote',
-            exclude: ['idNote'],
+            exclude: ['idNote', 'createdAt'],
           }),
         },
       },
@@ -57,9 +57,7 @@ export class NoteController {
       },
     },
   })
-  async count(
-    @param.where(Note) where?: Where<Note>,
-  ): Promise<Count> {
+  async count(@param.where(Note) where?: Where<Note>): Promise<Count> {
     return this.noteRepository.count(where);
   }
 
@@ -78,10 +76,8 @@ export class NoteController {
       },
     },
   })
-  async find(
-    @param.filter(Note) filter?: Filter<Note>,
-  ): Promise<Note[]> {
-    return this.noteRepository.find(filter);
+  async find(@param.filter(Note) filter?: Filter<Note>): Promise<Note[]> {
+    return this.noteRepository.find({include: [{relation: 'user'}]});
   }
 
   @patch('/notes', {
@@ -120,7 +116,7 @@ export class NoteController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Note, {exclude: 'where'}) filter?: FilterExcludingWhere<Note>
+    @param.filter(Note, {exclude: 'where'}) filter?: FilterExcludingWhere<Note>,
   ): Promise<Note> {
     return this.noteRepository.findById(id, filter);
   }

@@ -1,4 +1,10 @@
-import {belongsTo, Entity, model, property} from '@loopback/repository';
+import {
+  belongsTo,
+  Entity,
+  model,
+  property,
+  hasMany,
+} from '@loopback/repository';
 import {User, UserWithRelations} from './user.model';
 
 @model({
@@ -18,15 +24,22 @@ export class Note extends Entity {
     postgresql: {
       columnName: 'id_note',
       dataType: 'integer',
-      dataLength: null,
-      dataPrecision: null,
-      dataScale: 0,
       nullable: 'NO',
     },
   })
   idNote: number;
 
-  @belongsTo(() => User, {keyTo: 'idUser', name: 'user'})
+  @belongsTo(
+    () => User,
+    {name: 'user'},
+    {
+      postgresql: {
+        columnName: 'id_user',
+        dataType: 'integer',
+        nullable: 'NO',
+      },
+    },
+  )
   idUser: number;
 
   @property({
@@ -35,9 +48,6 @@ export class Note extends Entity {
     postgresql: {
       columnName: 'content',
       dataType: 'text',
-      dataLength: null,
-      dataPrecision: null,
-      dataScale: null,
       nullable: 'NO',
     },
   })
@@ -45,14 +55,9 @@ export class Note extends Entity {
 
   @property({
     type: 'date',
-    required: true,
     postgresql: {
       columnName: 'created_at',
       dataType: 'timestamp with time zone',
-      dataLength: null,
-      dataPrecision: null,
-      dataScale: null,
-      nullable: 'NO',
     },
   })
   createdAt: string;

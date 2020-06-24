@@ -77,9 +77,7 @@ export class UserController {
     },
   })
   async find(@param.filter(User) filter?: Filter<User>): Promise<User[]> {
-    console.log(this.userRepository.find({include: [{relation: 'notes'}]}));
-
-    return this.userRepository.find(filter);
+    return this.userRepository.find({include: [{relation: 'notes'}]});
   }
 
   @patch('/users', {
