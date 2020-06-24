@@ -1,4 +1,3 @@
-
 CREATE TABLE public.note_reference_types (
 	id_note_reference_type smallserial NOT NULL,
 	note_reference_type varchar(50) NOT NULL,
@@ -18,9 +17,9 @@ CREATE TABLE public.users (
 	id_user serial NOT NULL,
 	username varchar(100) NOT NULL,
 	full_name varchar(200) NOT NULL,
+	created_at timestamptz NULL DEFAULT now(),
 	email varchar(200) NOT NULL,
 	"password" varchar(300) NOT NULL,
-	created_at timestamptz NOT NULL DEFAULT now(),
 	CONSTRAINT users_pk PRIMARY KEY (id_user),
 	CONSTRAINT users_un UNIQUE (username)
 );
@@ -47,7 +46,7 @@ CREATE TABLE public.notes (
 	id_note serial NOT NULL,
 	id_user int4 NOT NULL,
 	"content" text NOT NULL,
-	created_at timestamptz NOT NULL DEFAULT now(),
+	created_at timestamptz NULL DEFAULT now(),
 	CONSTRAINT notes_pk PRIMARY KEY (id_note),
 	CONSTRAINT notes_fk FOREIGN KEY (id_user) REFERENCES users(id_user)
 );
