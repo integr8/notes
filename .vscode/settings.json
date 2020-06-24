@@ -6,6 +6,7 @@
         "docs",
         "dotnet",
         "vue",
-        "gtk"
+        "gtk",
+        "python"
     ]
 }
