@@ -24,12 +24,10 @@ export class UserRepository extends DefaultCrudRepository<
     protected noteRepositoryGetter: Getter<NoteRepository>,
   ) {
     super(User, dataSource);
-
     this.notes = this.createHasManyRepositoryFactoryFor(
       'notes',
       noteRepositoryGetter,
     );
-
     this.registerInclusionResolver('notes', this.notes.inclusionResolver);
   }
 }
