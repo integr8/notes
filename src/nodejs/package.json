@@ -1,69 +1,73 @@
 {
   "name": "notes",
-  "version": "1.0.0",
-  "description": "notes",
-  "keywords": [
-    "loopback-application",
-    "loopback"
-  ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "build": "lb-tsc",
-    "build:watch": "lb-tsc --watch",
-    "lint": "npm run prettier:check && npm run eslint",
-    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
-    "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
-    "prettier:check": "npm run prettier:cli -- -l",
-    "prettier:fix": "npm run prettier:cli -- --write",
-    "eslint": "lb-eslint --report-unused-disable-directives .",
-    "eslint:fix": "npm run eslint -- --fix",
-    "pretest": "npm run clean && npm run build",
-    "test": "lb-mocha --allow-console-logs \"dist/__tests__\"",
-    "posttest": "npm run lint",
-    "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
-    "docker:build": "docker build -t notes .",
-    "docker:run": "docker run -p 3000:3000 -d notes",
-    "migrate": "node ./dist/migrate",
-    "openapi-spec": "node ./dist/openapi-spec",
-    "prestart": "npm run build",
-    "start": "node -r source-map-support/register .",
-    "clean": "lb-clean dist *.tsbuildinfo .eslintcache"
-  },
-  "repository": {
-    "type": "git"
-  },
+  "version": "0.0.1",
+  "description": "API :)",
   "author": "",
-  "license": "",
-  "files": [
-    "README.md",
-    "dist",
-    "src",
-    "!*/__tests__"
-  ],
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
   "dependencies": {
-    "@loopback/boot": "^2.3.4",
-    "@loopback/core": "^2.9.0",
-    "@loopback/extension-health": "^0.4.8",
-    "@loopback/extension-metrics": "^0.3.8",
-    "@loopback/openapi-v3": "^3.4.4",
-    "@loopback/repository": "^2.8.0",
-    "@loopback/rest": "^5.1.2",
-    "@loopback/rest-explorer": "^2.2.5",
-    "@loopback/service-proxy": "^2.3.3",
-    "loopback-connector-postgresql": "^5.0.1",
-    "tslib": "^2.0.0"
+    "@nestjs/common": "^7.0.0",
+    "@nestjs/core": "^7.0.0",
+    "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/swagger": "^4.6.0",
+    "@nestjs/typeorm": "^7.1.3",
+    "@types/mongodb": "^3.5.27",
+    "mongodb": "^3.6.1",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^6.5.4",
+    "swagger-ui-express": "^4.1.4",
+    "typeorm": "^0.2.25"
   },
   "devDependencies": {
-    "@loopback/build": "^5.4.3",
-    "@loopback/eslint-config": "^8.0.2",
-    "@loopback/testlab": "^3.1.8",
-    "@types/node": "^10.17.26",
-    "eslint": "^7.3.1",
-    "source-map-support": "^0.5.19",
-    "typescript": "~3.9.5"
+    "@nestjs/cli": "^7.0.0",
+    "@nestjs/schematics": "^7.0.0",
+    "@nestjs/testing": "^7.0.0",
+    "@types/express": "^4.17.3",
+    "@types/jest": "26.0.10",
+    "@types/node": "^13.9.1",
+    "@types/supertest": "^2.0.8",
+    "@typescript-eslint/eslint-plugin": "3.9.1",
+    "@typescript-eslint/parser": "3.9.1",
+    "eslint": "7.7.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "jest": "26.4.2",
+    "prettier": "^1.19.1",
+    "supertest": "^4.0.2",
+    "ts-jest": "26.2.0",
+    "ts-loader": "^6.2.1",
+    "ts-node": "9.0.0",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.4"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
   }
 }
