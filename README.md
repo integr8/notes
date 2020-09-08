@@ -1,0 +1,1 @@
+[![Build Status](https://dev.azure.com/integr8/fabioluciano/_apis/build/status/integr8.notes?branchName=development)](https://dev.azure.com/integr8/fabioluciano/_build/latest?definitionId=1&branchName=development)
